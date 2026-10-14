@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechMart — E-Commerce & Employee Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#store" class="logo">
+        <i class="fa-solid fa-bolt logo-icon"></i>
+        <span>Tech<span class="logo-accent">Mart</span></span>
+      </a>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-links">
+        <button class="nav-tab active" data-tab="store">
+          <i class="fa-solid fa-store"></i> Store Front
+        </button>
+        <button class="nav-tab" data-tab="employee-portal">
+          <i class="fa-solid fa-id-card"></i> Employee Portal
+        </button>
+      </nav>
+
+      <!-- Search & User Actions -->
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search products, brands..." onkeyup="filterProducts()">
+        </div>
+
+        <button class="btn btn-outline" id="authBtn" onclick="openAuthModal()">
+          <i class="fa-solid fa-user"></i> <span id="authBtnText">Sign In</span>
+        </button>
+
+        <button class="btn btn-primary cart-btn" onclick="toggleCart()">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN TAB CONTENT -->
+  <main class="main-content">
+
+    <!-- TAB 1: E-COMMERCE STORE -->
+    <section id="store" class="tab-pane active">
+      <!-- Banner -->
+      <div class="hero-banner">
+        <div class="banner-text">
+          <span class="pill-tag">Smart Deal Finder Engine</span>
+          <h1>Shop Top Tech with Automatic Price Protection</h1>
+          <p>We monitor price trends across Amazon, Flipkart, and BestBuy in real time. If a product is cheaper elsewhere, we guide you to save money!</p>
+        </div>
+      </div>
+
+      <!-- Filters & Categories -->
+      <div class="store-controls">
+        <div class="category-pills">
+          <button class="cat-btn active" onclick="setCategory('all', this)">All Items</button>
+          <button class="cat-btn" onclick="setCategory('Laptops', this)">Laptops</button>
+          <button class="cat-btn" onclick="setCategory('Audio', this)">Audio</button>
+          <button class="cat-btn" onclick="setCategory('Mobile & Tablets', this)">Mobile & Tablets</button>
+          <button class="cat-btn" onclick="setCategory('Calculators', this)">Calculators</button>
+          <button class="cat-btn" onclick="setCategory('Home Appliances', this)">Home Appliances</button>
+          <button class="cat-btn" onclick="setCategory('Networking', this)">Networking</button>
+          <button class="cat-btn" onclick="setCategory('Wearables', this)">Wearables</button>
+        </div>
+
+        <div class="sort-wrapper">
+          <label for="sortSelect">Sort By: </label>
+          <select id="sortSelect" onchange="filterProducts()">
+            <option value="featured">Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Injected via WBT.js -->
+      </div>
+    </section>
+
+    <!-- TAB 2: EMPLOYEE PORTAL -->
+    <section id="employee-portal" class="tab-pane">
+      <div class="portal-header">
+        <h2>Employee Management & Utilities</h2>
+        <p>Contains solutions for Employee Records (HTML), Styled Cards (CSS), Salary Calculator (JS), and Array Filtering (ES6).</p>
+      </div>
+
+      <div class="portal-grid">
+        
+        <!-- Q1: Semantic Employee Page -->
+        <article class="portal-card full-width">
+          <div class="section-tag">Q1. Semantic Employee Page (HTML)</div>
+          <header class="emp-header">
+            <div class="company-badge">
+              <i class="fa-solid fa-building"></i> TechMart Global Solutions
+            </div>
+            <h3>Employee Master Information Profile</h3>
+          </header>
+          
+          <div class="emp-details-grid">
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-user-tag"></i> Employee Name</span>
+              <span class="detail-val">Rahul Sharma</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-hashtag"></i> Employee ID</span>
+              <span class="detail-val">TM-89402</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-sitemap"></i> Department</span>
+              <span class="detail-val">E-Commerce Engineering</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-briefcase"></i> Designation</span>
+              <span class="detail-val">Senior Frontend Architect</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-calendar-day"></i> Joining Date</span>
+              <span class="detail-val">August 15, 2022</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-envelope"></i> Contact Information</span>
+              <span class="detail-val">rahul.sharma@techmart.com</span>
+            </div>
+          </div>
+
+          <div class="skills-block">
+            <h4><i class="fa-solid fa-code"></i> Technical Competencies & Skills</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">HTML5 & Semantic Markup</span>
+              <span class="skill-tag">CSS Grid & Flexbox</span>
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">E-Commerce APIs</span>
+              <span class="skill-tag">Python & Data Parsing</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Q2: Employee Card -->
+        <article class="portal-card">
+          <div class="section-tag">Q2. Employee Card (CSS)</div>
+          
+          <div class="emp-card-wrapper">
+            <div class="emp-card">
+              <div class="emp-avatar">
+                <i class="fa-solid fa-user-astronaut"></i>
+              </div>
+              <h3 class="emp-card-name">Aarav Patel</h3>
+              <p class="emp-card-dept">Engineering & IT</p>
+              
+              <div class="card-meta">
+                <div><span>ID:</span> TM-1029</div>
+                <div><span>Role:</span> Full Stack Dev</div>
+                <div><span>Joined:</span> Jan 2024</div>
+              </div>
+
+              <div class="card-skills">
+                <span class="mini-skill">Python</span>
+                <span class="mini-skill">CSS3</span>
+                <span class="mini-skill">JS</span>
+              </div>
+
+              <button class="emp-action-btn">View Full Profile</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Q3: Salary Calculator -->
+        <article class="portal-card">
+          <div class="section-tag">Q3. Salary Calculator (JS)</div>
+          <h3>Gross Salary Estimator</h3>
+          <p class="calc-desc">Calculate Gross Salary using: <code>Basic Salary + HRA + Transport Allowance</code></p>
+
+          <form id="salaryForm" onsubmit="event.preventDefault(); calculateSalary();" class="calc-form">
+            <div class="form-group">
+              <label for="basicSalary">Basic Salary (₹)</label>
+              <input type="number" id="basicSalary" value="35000" required>
+            </div>
+            <div class="form-group">
+              <label for="hraSalary">HRA (₹)</label>
+              <input type="number" id="hraSalary" value="12000" required>
+            </div>
+            <div class="form-group">
+              <label for="transportSalary">Transport Allowance (₹)</label>
+              <input type="number" id="transportSalary" value="4500" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary full-btn">
+              <i class="fa-solid fa-calculator"></i> Calculate Salary
+            </button>
+          </form>
+
+          <div class="calc-result" id="salaryResultBox">
+            <span class="res-title">Calculated Gross Salary</span>
+            <span class="res-value" id="grossSalaryResult">₹51,500</span>
+          </div>
+        </article>
+
+        <!-- Q4: ES6 Salary Filter -->
+        <article class="portal-card full-width">
+          <div class="section-tag">Q4. ES6 Array Filter Method</div>
+          <h3>High Earners Salary Filter (salaries &gt; ₹30,000)</h3>
+          <p class="calc-desc">Uses <code>Array.prototype.filter()</code> to find entries exceeding ₹30,000.</p>
+
+          <div class="es6-demo-box">
+            <div class="es6-col">
+              <h4>Original Array:</h4>
+              <pre class="code-block" id="originalArrayCode">let salaries = [25000, 32000, 28000, 45000, 38000];</pre>
+            </div>
+
+            <div class="es6-col">
+              <h4>ES6 Filter Expression:</h4>
+              <pre class="code-block">salaries.filter(salary => salary > 30000);</pre>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-outline" onclick="runES6Filter()">
+              <i class="fa-solid fa-play"></i> Run ES6 Filter
+            </button>
+
+            <div class="add-salary-inline">
+              <input type="number" id="newSalaryInput" placeholder="Add new salary (₹)">
+              <button class="btn btn-primary" onclick="addCustomSalary()">Add to List</button>
+            </div>
+          </div>
+
+          <div class="filter-output">
+            <div class="output-row">
+              <span class="label">Current List:</span>
+              <div class="badges-row" id="currentSalariesDisplay"></div>
+            </div>
+            <div class="output-row highlighted">
+              <span class="label">Filtered Salaries (&gt; ₹30,000):</span>
+              <div class="badges-row" id="filteredSalariesDisplay">Click "Run ES6 Filter" above</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CART SLIDING DRAWER -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-bag-shopping"></i> Shopping Cart</h3>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+
+    <div class="cart-body" id="cartBody">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0.00</span>
+      </div>
+      <div class="summary-line">
+        <span>Estimated GST / Tax (18%)</span>
+        <span id="cartTax">₹0.00</span>
+      </div>
+      <div class="summary-line total">
+        <span>Total Amount</span>
+        <span id="cartTotal">₹0.00</span>
+      </div>
+
+      <button class="btn btn-primary checkout-btn" onclick="openCheckoutModal()">
+        <i class="fa-solid fa-lock"></i> Proceed to Secure Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- AUTHENTICATION MODAL -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-user-circle modal-icon"></i>
+        <h2>Sign In to TechMart</h2>
+        <p>Access your orders, saved cart, and price comparison alerts</p>
+      </div>
+      
+      <form onsubmit="event.preventDefault(); handleLogin();" class="auth-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" placeholder="name@example.com" required value="student@university.edu">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="••••••••" required value="password123">
+        </div>
+        <button type="submit" class="btn btn-primary full-btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CHECKOUT & PAYMENT MODAL -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal-box wide">
+      <button class="modal-close" onclick="closeCheckoutModal()">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-credit-card modal-icon"></i>
+        <h2>Complete Payment Details</h2>
+        <p>Enter your payment details to finalize your purchase</p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); processPayment();" class="payment-form">
+        <div class="payment-grid">
+          <div class="form-group">
+            <label>Full Name on Card</label>
+            <input type="text" placeholder="John Doe" required value="Rahul Sharma">
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" placeholder="4532 •••• •••• 8922" maxlength="19" required value="4532 8812 9901 8922">
+          </div>
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="text" placeholder="MM/YY" maxlength="5" required value="08/28">
+          </div>
+          <div class="form-group">
+            <label>CVV / CVC</label>
+            <input type="password" placeholder="123" maxlength="4" required value="492">
+          </div>
+        </div>
+
+        <div class="checkout-summary-box">
+          <div class="summary-line"><span>Total Payable:</span> <strong id="checkoutTotalAmount">₹0.00</strong></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary full-btn" id="paySubmitBtn">
+          <i class="fa-solid fa-shield-halved"></i> Pay & Confirm Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PRICE COMPARISON MODAL -->
+  <div class="modal-backdrop" id="compareModal">
+    <div class="modal-box wide">
+      <button class="modal-close" onclick="closeCompareModal()">&times;</button>
+      <div class="modal-header">
+        <i class="fa-solid fa-code-compare modal-icon"></i>
+        <h2 id="compareTitle">Live Price Comparison Matrix</h2>
+        <p>We crawl prices across popular market hubs to ensure transparency.</p>
+      </div>
+
+      <div id="compareContent">
+        <!-- Injected via WBT.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LINKED TO WBT.js MATCHING YOUR EXACT FILE NAME -->
+  <script src="Script.js"></script>
+</body>
+</html>
